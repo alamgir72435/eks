@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-depl
   namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
@@ -16,10 +18,3 @@ spec:
             name: nginx-service
             port:
              number: 80
-      # - pathType: Prefix
-      #   path: "/<path>"
-      #   backend:
-      #     service:
-      #       name: <servcieName>
-      #       port:
-      #         number: <servicePort>

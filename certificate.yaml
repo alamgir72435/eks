@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kube-shothik-cert
+  namespace: default
+spec:
+  secretName: kube-shothik-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: kube.shothik.com.bd
+  dnsNames:
+  - kube.shothik.com.bd

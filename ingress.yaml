@@ -4,11 +4,21 @@ metadata:
   name: ingress-depl
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
   - host: kube.shothik.com.bd
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-service
+            port:
+             number: 80
+  - host: api.shothik.com.bd
     http:
       paths:
       - pathType: Prefix

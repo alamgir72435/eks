@@ -235,3 +235,16 @@ spec:
             port:
               number: 80
 ```
+
+
+### LOGIN GHCR in KUBERNETES CLUSTER
+```
+
+kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=<your-github-username> \
+  --docker-password=<your-personal-access-token> \
+  --docker-email=<your-email>
+
+```
+

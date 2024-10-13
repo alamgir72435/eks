@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shothik-depl
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shothik-depl
+  template:
+    metadata:
+      labels:
+        app: shothik-depl
+    spec:
+      containers:
+      - name: shothik-container
+        image: ghcr.io/ridz-shothikai/shothik:fd654f7
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: ghcr-secret # Make sure this secret is created for image pull
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shothik-svc
+  namespace: default
+spec:
+  selector:
+    app: shothik-depl
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
